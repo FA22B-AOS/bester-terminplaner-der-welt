@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1" 
         xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+        xmlns:converters="clr-namespace:WpfApp1.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Appointment Planner" Height="450" Width="800">
+    
     <Grid>
         <StackPanel>
             <!-- Input Form -->
@@ -14,56 +16,31 @@
                 <StackPanel>
                     <!-- Title TextBox with Placeholder -->
                     <Grid Margin="5">
-                        <TextBox Name="TitleTextBox" Text="{Binding NewAppointment.Title, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Text="Title" IsHitTestVisible="False" 
-                                   Foreground="Gray" Margin="5,0,0,0"
-                                   VerticalAlignment="Center">
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Text, ElementName=TitleTextBox}" Value="">
-                                            <Setter Property="Visibility" Value="Visible"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Text, ElementName=TitleTextBox}" Value="{x:Null}">
-                                            <Setter Property="Visibility" Value="Visible"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Text, ElementName=TitleTextBox}" Value="{x:Static sys:String.Empty}">
-                                            <Setter Property="Visibility" Value="Visible"/>
-                                        </DataTrigger>
-                                        <Trigger Property="TextBox.Text" Value="{x:Static sys:String.Empty}">
-                                            <Setter Property="Visibility" Value="Hidden"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
+                        <Label Content="Title" Target="{Binding ElementName=TitleTextBox}" VerticalAlignment="Center" Foreground="Gray"/>
+                        <TextBox Name="TitleTextBox" Text="{Binding NewAppointment.Title, UpdateSourceTrigger=PropertyChanged}" Margin="0,40,0,0"/>
                     </Grid>
 
-                    <!-- DatePicker and Description TextBox -->
-                    <DatePicker Width="200" Margin="5" SelectedDate="{Binding NewAppointment.Date, UpdateSourceTrigger=PropertyChanged}" />
 
-                    <!-- Description TextBox with Placeholder -->
+
+                    <!-- DatePicker -->
                     <Grid Margin="5">
-                        <TextBox Name="DescriptionTextBox" Text="{Binding NewAppointment.Description, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Text="Description" IsHitTestVisible="False"
-                                   Foreground="Gray" Margin="5,0,0,0"
-                                   VerticalAlignment="Center">
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Text, ElementName=DescriptionTextBox}" Value="">
-                                            <Setter Property="Visibility" Value="Visible"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Text, ElementName=DescriptionTextBox}" Value="{x:Null}">
-                                            <Setter Property="Visibility" Value="Visible"/>
-                                        </DataTrigger>
-                                        <Trigger Property="TextBox.Text" Value="{x:Static sys:String.Empty}">
-                                            <Setter Property="Visibility" Value="Hidden"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
+                        <Label Content="Date" VerticalAlignment="Center" Foreground="Gray"/>
+                        <DatePicker Width="200" SelectedDate="{Binding NewAppointment.Date, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Grid>
+
+                    <Grid Margin="5">
+                        <!-- TimePicker (ComboBox for Hours and Minutes) -->
+                        <Label Content="Time" Foreground="Gray"/>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <ComboBox Width="60" SelectedItem="{Binding NewAppointment.Hour}" ItemsSource="{Binding Hours}" />
+                            <ComboBox Width="60" SelectedItem="{Binding NewAppointment.Minute}" ItemsSource="{Binding Minutes}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Description TextBox with Label -->
+                    <Grid Margin="5">
+                        <Label Content="Description" Target="{Binding ElementName=DescriptionTextBox}" VerticalAlignment="Center" Foreground="Gray"/>
+                        <TextBox Name="DescriptionTextBox" Text="{Binding NewAppointment.Description, UpdateSourceTrigger=PropertyChanged}" Margin="0,40,0,0"/>
                     </Grid>
 
                     <!-- Add Appointment Button -->
