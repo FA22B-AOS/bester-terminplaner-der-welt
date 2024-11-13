@@ -16,21 +16,21 @@
                 <StackPanel>
                     <!-- Title TextBox with Placeholder -->
                     <Grid Margin="5">
-                        <Label Content="Title" Target="{Binding ElementName=TitleTextBox}" VerticalAlignment="Center" Foreground="Gray"/>
-                        <TextBox Name="TitleTextBox" Text="{Binding NewAppointment.Title, UpdateSourceTrigger=PropertyChanged}" Margin="0,40,0,0"/>
+                        <Label Content="Title" Target="{Binding ElementName=TitleTextBox}" VerticalAlignment="Center" Foreground="Gray" Margin="-5,0,5,0"/>
+                        <TextBox Name="TitleTextBox" Text="{Binding NewAppointment.Title, UpdateSourceTrigger=PropertyChanged}" Margin="0,40,0,0" TextChanged="TitleTextBox_TextChanged"/>
                     </Grid>
 
 
 
                     <!-- DatePicker -->
                     <Grid Margin="5">
-                        <Label Content="Date" VerticalAlignment="Center" Foreground="Gray"/>
+                        <Label Content="Date" VerticalAlignment="Center" Foreground="Gray" Margin="-5,0,5,0"/>
                         <DatePicker Width="200" SelectedDate="{Binding NewAppointment.Date, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <Grid Margin="5">
                         <!-- TimePicker (ComboBox for Hours and Minutes) -->
-                        <Label Content="Time" Foreground="Gray"/>
+                        <Label Content="Time" Foreground="Gray" Margin="-5,0,5,0"/>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <ComboBox Width="60" SelectedItem="{Binding NewAppointment.Hour}" ItemsSource="{Binding Hours}" />
                             <ComboBox Width="60" SelectedItem="{Binding NewAppointment.Minute}" ItemsSource="{Binding Minutes}" />
@@ -39,12 +39,12 @@
 
                     <!-- Description TextBox with Label -->
                     <Grid Margin="5">
-                        <Label Content="Description" Target="{Binding ElementName=DescriptionTextBox}" VerticalAlignment="Center" Foreground="Gray"/>
+                        <Label Content="Description" Target="{Binding ElementName=DescriptionTextBox}" VerticalAlignment="Center" Foreground="Gray" Margin="-5,0,5,0"/>
                         <TextBox Name="DescriptionTextBox" Text="{Binding NewAppointment.Description, UpdateSourceTrigger=PropertyChanged}" Margin="0,40,0,0"/>
                     </Grid>
 
                     <!-- Add Appointment Button -->
-                    <Button Content="Add Appointment" Width="200" Margin="5" Command="{Binding AddAppointmentCommand}"/>
+                    <Button Content="Add Appointment" Width="200" Margin="5" Command="{Binding AddAppointmentCommand}" Click="Button_Click"/>
                 </StackPanel>
             </GroupBox>
 

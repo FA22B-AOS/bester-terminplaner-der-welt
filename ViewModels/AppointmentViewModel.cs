@@ -14,13 +14,11 @@ namespace WpfApp1.ViewModels
         public ICommand AddAppointmentCommand { get; set; }
         public ICommand DeleteAppointmentCommand { get; set; }
 
-        // ObservableCollection für Stunden und Minuten
         public ObservableCollection<int> Hours { get; set; }
         public ObservableCollection<int> Minutes { get; set; }
 
         public AppointmentViewModel()
         {
-            // Initialisierung der Listen für Stunden und Minuten
             Hours = new ObservableCollection<int>(Enumerable.Range(0, 24));
             Minutes = new ObservableCollection<int>(Enumerable.Range(0, 60));
 
@@ -35,10 +33,8 @@ namespace WpfApp1.ViewModels
         {
             if (!string.IsNullOrWhiteSpace(NewAppointment.Title) && NewAppointment.Date > DateTime.Now.Date)
             {
-                // Uhrzeit zum Termin hinzufügen
                 NewAppointment.Date = NewAppointment.Date.AddHours(NewAppointment.Hour).AddMinutes(NewAppointment.Minute);
 
-                // Termin zur Liste hinzufügen
                 Appointments.Add(new Appointment
                 {
                     Title = NewAppointment.Title,
@@ -46,7 +42,6 @@ namespace WpfApp1.ViewModels
                     Description = NewAppointment.Description
                 });
 
-                // Formular zurücksetzen
                 NewAppointment = new Appointment();
                 OnPropertyChanged(nameof(NewAppointment));
             }
