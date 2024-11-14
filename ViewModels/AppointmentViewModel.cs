@@ -24,6 +24,7 @@ namespace WpfApp1.ViewModels
 
             Appointments = new ObservableCollection<Appointment>();
             NewAppointment = new Appointment();
+            NewAppointment.Date = DateTime.Now.Date;
 
             AddAppointmentCommand = new RelayCommand(AddAppointment);
             DeleteAppointmentCommand = new RelayCommand<Appointment>(DeleteAppointment);
@@ -31,7 +32,7 @@ namespace WpfApp1.ViewModels
 
         private void AddAppointment()
         {
-            if (!string.IsNullOrWhiteSpace(NewAppointment.Title) && NewAppointment.Date > DateTime.Now.Date)
+            if (!string.IsNullOrWhiteSpace(NewAppointment.Title) && NewAppointment.Date >= DateTime.Now.Date)
             {
                 NewAppointment.Date = NewAppointment.Date.AddHours(NewAppointment.Hour).AddMinutes(NewAppointment.Minute);
 
@@ -43,6 +44,7 @@ namespace WpfApp1.ViewModels
                 });
 
                 NewAppointment = new Appointment();
+                NewAppointment.Date = DateTime.Now.Date;
                 OnPropertyChanged(nameof(NewAppointment));
             }
         }

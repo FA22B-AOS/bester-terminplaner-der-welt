@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1" 
+        xmlns:local="clr-namespace:WpfApp1"
+        xmlns:util="clr-namespace:WpfApp1.Util"
         xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         xmlns:converters="clr-namespace:WpfApp1.Converters"
         mc:Ignorable="d"
@@ -50,12 +51,13 @@
 
             <!-- Appointment List -->
             <GroupBox Header="Appointments">
-                <ListView ItemsSource="{Binding Appointments}">
+                <ListView ItemsSource="{Binding Appointments}"
+                         util:GridViewSort.AutoSort="True">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="150"/>
-                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" Width="150"/>
-                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="300"/>
+                            <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" util:GridViewSort.PropertyName="Title" Width="150"/>
+                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" util:GridViewSort.PropertyName="Date" Width="150"/>
+                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" util:GridViewSort.PropertyName="Description" Width="300"/>
                             <GridViewColumn Header="Actions">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
