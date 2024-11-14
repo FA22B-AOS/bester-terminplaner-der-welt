@@ -2,9 +2,10 @@
 {
     public class Appointment
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
         public string Title { get; set; }
         public DateTime Date { get; set; }
+        public int Hour { get; set; } 
+        public int Minute { get; set; } 
         public string Description { get; set; }
     }
 }

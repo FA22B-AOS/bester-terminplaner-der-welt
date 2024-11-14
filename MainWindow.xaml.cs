@@ -13,5 +13,15 @@ namespace WpfApp1
             InitializeComponent();
             DataContext = new AppointmentViewModel();
         }
+
+        private void TitleTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
